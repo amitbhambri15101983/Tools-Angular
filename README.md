@@ -63,3 +63,14 @@ Project setup on local
 1. clone the project git clone <git Url >
 2. npm install :- this command will download all the modules <node_modules>
 3. ng server : this command will run the application
+
+## Deployment to Github pages
+1. Install the Angular CLI GitHub Pages deploy tool
+npm install -g angular-cli-ghpages :  Run this command inside project to install Gihup pages deploy tool
+2. Build your Angular app for production
+ng build --configuration production --base-href "/Tools-Angular/" :  Run this command to build with base url Tools-Angular now it will build dist folder and inside that we will have tool-project and inside this browser and server and we need to deploy only browser which we will do next
+3. Deploy to GitHub Pages
+npx angular-cli-ghpages --dir=dist/tools-project/browser
+
+
+  
