@@ -1,0 +1,30 @@
+<div class="modal" *ngIf="show">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Bill</h3>
+        <button class="close-modal" (click)="cancel.emit()">&times;</button>
+      </div>
+  
+      <div class="form-group">
+        <label>Amount</label>
+        <input type="number" [(ngModel)]="localBill.amount" />
+      </div>
+      <div class="form-group">
+        <label>Paid By</label>
+        <select [(ngModel)]="localBill.paidBy">
+          <option value="">Select</option>
+          <option *ngFor="let m of members" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="localBill.description" />
+      </div>
+  
+      <div class="modal-footer">
+        <button class="btn btn-outline" (click)="cancel.emit()">Cancel</button>
+        <button class="btn btn-secondary" (click)="submit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,12 @@
+<div>
+  <app-group-list 
+    *ngIf="view === 'group'" 
+    (groupSelected)="onGroupSelected($event)">
+  </app-group-list>
+  
+  <app-bill-details 
+    *ngIf="view === 'bill'" 
+    [groupId]="selectedGroupId"
+    (back)="onBackToGroups()">
+  </app-bill-details>
+</div>

@@ -1,0 +1,51 @@
+<div class="app-container">
+    <h1>Bill Splitter</h1>
+    <p class="subtitle">Fairly split expenses among friends, roommates, or group members</p>
+    
+    <h2>Your Groups</h2>
+    <div id="existingGroups">
+      <div *ngIf="groups.length === 0" class="empty-state">
+        No groups found. Create your first group!
+      </div>
+      
+      <div *ngFor="let group of groups" class="group-card">
+        <h3>{{ group.name }}</h3>
+        <p>Members: {{ group.members.join(', ') }}</p>
+        <p>Total bills: {{ group.bills.length }}</p>
+        <p class="group-total">Total amount: {{ formatCurrency(group) }}</p>
+        <div class="group-actions">
+          <button (click)="openGroup(group.id)" class="btn">Open</button>
+          <button (click)="deleteGroup(group.id)" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Create New Group</h2>
+    <div class="form-group">
+      <label for="groupName">Group Name</label>
+      <input type="text" id="groupName" placeholder="Enter group name" 
+             [(ngModel)]="groupName" #groupNameInput>
+    </div>
+    
+    <div class="form-group">
+      <label for="memberInput">Add Members</label>
+      <div class="member-input-container">
+        <input type="text" id="memberInput" placeholder="Enter member name" 
+               [(ngModel)]="newMember" (keyup.enter)="addMember()" 
+               [disabled]="!groupNameInput.value.trim()">
+        <button (click)="addMember()" class="btn btn-secondary" 
+                [disabled]="!newMember.trim()">Add</button>
+      </div>
+      <div id="membersContainer" style="margin-top: 10px;">
+        <span *ngFor="let member of newGroupMembers" class="member-tag">
+          {{ member }} 
+          <i class="fas fa-times" (click)="removeMember(member)"></i>
+        </span>
+      </div>
+    </div>
+    
+    <button (click)="createGroup()" class="btn btn-secondary" 
+            [disabled]="!groupName.trim() || newGroupMembers.length === 0">
+      Create Group
+    </button>
+  </div>

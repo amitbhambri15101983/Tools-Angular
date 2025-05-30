@@ -1,0 +1,114 @@
+<div class="app-container">
+    <h1>{{ group?.name }}</h1>
+    
+    <!-- Add New Bill Section -->
+    <div class="section">
+      <h2>Add New Bill</h2>
+      
+      <div class="form-group">
+        <label for="billAmount">Amount</label>
+        <div class="amount-input">
+          <span class="currency-symbol">{{ currencySymbols[group?.currency || 'INR'] }}</span>
+          <input type="number" id="billAmount" placeholder="0.00" step="0.01" 
+                 [(ngModel)]="newBill.amount">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="paidBy">Paid By</label>
+        <select id="paidBy" [(ngModel)]="newBill.paidBy">
+          <option value="">Select who paid</option>
+          <option *ngFor="let member of group?.members" [value]="member">
+            {{ member }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="billDescription">Description</label>
+        <input type="text" id="billDescription" placeholder="What was this for?" 
+               [(ngModel)]="newBill.description">
+      </div>
+      
+      <div class="button-group">
+        <button (click)="addBill()" class="btn add-btn">Add Bill</button>
+        <button (click)="onBack()" class="btn back-btn">Back to Groups</button>
+      </div>
+    </div>
+    
+    <!-- Bills List -->
+    <div class="section">
+      <h2>Bills</h2>
+      <div *ngIf="!group?.bills?.length" class="empty-state">No bills added yet</div>
+      
+      <div *ngFor="let bill of group?.bills" class="bill-card">
+        <div class="bill-info">
+          <div class="bill-description">{{ bill.description }}</div>
+          <div class="bill-amount">{{ formatCurrency(bill.amount) }}</div>
+        </div>
+        <div class="bill-details">
+          <div>Paid by: {{ bill.paidBy }} on {{ bill.date }}</div>
+          <div class="bill-actions">
+            <button (click)="openEditModal(bill)" class="btn edit-btn">Edit</button>
+            <button (click)="deleteBill1(bill.id)" class="btn delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Settlement Section -->
+    <div class="section settlement-section">
+      <h2>Settlement</h2>
+      
+      <div *ngIf="settlements.length === 0" class="empty-state">
+        Everything is balanced! No payments needed.
+      </div>
+      
+      <div *ngFor="let settlement of settlements" class="settlement-item">
+        <span class="from">{{ settlement.from }}</span>
+        <span class="action">owes</span>
+        <span class="to">{{ settlement.to }}</span>
+        <span class="amount">{{ formatCurrency(settlement.amount) }}</span>
+      </div>
+      
+      <button (click)="downloadPDF()" class="btn download-btn">
+        Download as PDF
+      </button>
+    </div>
+    
+    <!-- Edit Bill Modal -->
+    <div *ngIf="showEditModal" class="modal-backdrop">
+      <div class="edit-modal">
+        <h2>Edit Bill</h2>
+        
+        <div class="form-group">
+          <label>Amount</label>
+          <div class="amount-input">
+            <span class="currency-symbol">{{ currencySymbols[group?.currency || 'INR'] }}</span>
+            <input type="number" placeholder="0.00" step="0.01" 
+                   [(ngModel)]="editingBill.amount">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Paid By</label>
+          <select [(ngModel)]="editingBill.paidBy">
+            <option *ngFor="let member of group?.members" [value]="member">
+              {{ member }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" placeholder="What was this for?" 
+                 [(ngModel)]="editingBill.description">
+        </div>
+        
+        <div class="button-group">
+          <button (click)="saveEditedBill()" class="btn add-btn">Save</button>
+          <button (click)="closeEditModal()" class="btn back-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
