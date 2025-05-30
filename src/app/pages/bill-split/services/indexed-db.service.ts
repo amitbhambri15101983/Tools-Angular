@@ -13,7 +13,6 @@ export class IndexedDbService {
 
   async initDB(): Promise<void> {
     if (!this.isBrowser()) {
-      alert("Not in browser environment");
       return;
     }
   

@@ -69,7 +69,6 @@ export class GroupListComponent implements OnInit {
       await this.refreshGroups();
     } catch (error) {
       console.error('Error creating group:', error);
-      alert('Failed to create group. Please try again.');
     }
   }
 
@@ -84,7 +83,6 @@ export class GroupListComponent implements OnInit {
         await this.refreshGroups();
       } catch (error) {
         console.error('Error deleting group:', error);
-        alert('Failed to delete group. Please try again.');
       }
     }
   }
