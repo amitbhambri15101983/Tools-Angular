@@ -1,0 +1,10 @@
+{
+  "routes": {
+    "/Tools-Angular": {},
+    "/Tools-Angular/bill-split": {},
+    "/Tools-Angular/img-compress": {},
+    "/Tools-Angular/kids-math-util": {},
+    "/Tools-Angular/pdf-to-word": {},
+    "/Tools-Angular/pdf-to-word-alt": {}
+  }
+}
