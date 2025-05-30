@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'https://amitbhambri15101983.github.io/Tools-Angular',
+  basePath: '/Tools-Angular',
   supportedLocales: {
   "en-US": ""
 },
