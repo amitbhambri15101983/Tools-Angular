@@ -5,6 +5,7 @@ import { ImgCompressComponent } from './pages/img-compress/img-compress.componen
 import { KidsMathUtilComponent } from './pages/kids-math-util/kids-math-util.component';
 import { PdfToWordComponent } from './pages/pdf-to-word/pdf-to-word.component';
 import { PdfToWordAltComponent } from './pages/pdf-to-word-alt/pdf-to-word-alt.component';
+import { FlightItineraryComponent } from './pages/flight-itinerary/flight-itinerary.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'kids-math-util', component: KidsMathUtilComponent },
   { path: 'pdf-to-word', component: PdfToWordComponent },
   { path: 'pdf-to-word-alt', component: PdfToWordAltComponent },
+  { path: 'flight-itinerary', component: FlightItineraryComponent },
   { path: '**', redirectTo: '' }
 ];
