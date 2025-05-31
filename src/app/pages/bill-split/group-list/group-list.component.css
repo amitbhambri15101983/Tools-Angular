@@ -155,3 +155,20 @@
     cursor: not-allowed;
     transform: none !important;
   }
+
+  .hero {
+    background: white;
+    padding: 0px;
+  }
+
+  .hero h1 {
+    color: #4361ee;
+  }
+
+  .hero p {
+    color: black;
+  }
+
+  .logocenter{
+    position: center;
+  }
