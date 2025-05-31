@@ -1,1 +1,127 @@
-<p>img-compress works!</p>
+<div class="container">
+    <!-- Top Ad Banner -->
+    <div class="ad-banner">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-1895753879578333"
+          data-ad-slot="8659719065"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <section class="hero">
+      <h1>Free Online Image Compression Tool</h1>
+      <p>Reduce your image file size without losing quality. Optimize JPG, PNG, and WebP images for faster websites and smaller storage.</p>
+    </section>
+    
+    <div class="compressor-container">
+      <div class="upload-area" id="dropArea"
+          (dragover)="highlightDropArea()"
+          (dragenter)="highlightDropArea()"
+          (dragleave)="unhighlightDropArea()"
+          (drop)="handleDrop($event)"
+          (click)="fileInput.click()">
+        <i>📁</i>
+        <h2>Drag & Drop Your Images Here</h2>
+        <p>or click to browse files (Supports JPG, PNG, WebP)</p>
+        <input type="file" #fileInput id="fileInput" accept="image/*" style="display: none;" (change)="handleFileSelect($event)">
+        <button class="btn" id="selectFilesBtn">Select Images</button>
+      </div>
+      
+      <div class="error-message" #errorMessage id="errorMessage"></div>
+      
+      <div class="controls">
+        <div class="control-group">
+          <h3>Compression Settings</h3>
+          <div class="slider-container">
+            <label for="qualitySlider">Quality</label>
+            <input type="range" id="qualitySlider" class="slider" min="1" max="100" [value]="quality" (input)="updateQuality($event)">
+            <div class="slider-value">Quality: <span #qualityValue id="qualityValue">{{quality}}</span>%</div>
+          </div>
+          <div class="slider-container">
+            <label for="sizeSlider">Max Width/Height</label>
+            <input type="range" id="sizeSlider" class="slider" min="100" max="2000" step="100" [value]="maxSize" (input)="updateSize($event)">
+            <div class="slider-value">Size: <span #sizeValue id="sizeValue">{{maxSize === 2000 ? 'Original' : maxSize + 'px'}}</span></div>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <h3>Output Format</h3>
+          <div class="format-options">
+            <div class="format-option" 
+                 [class.active]="currentFormat === 'original'"
+                 (click)="setFormat('original')">Original</div>
+            <div class="format-option" 
+                 [class.active]="currentFormat === 'jpeg'"
+                 (click)="setFormat('jpeg')">JPG</div>
+            <div class="format-option" 
+                 [class.active]="currentFormat === 'png'"
+                 (click)="setFormat('png')">PNG</div>
+            <div class="format-option" 
+                 [class.active]="currentFormat === 'webp'"
+                 (click)="setFormat('webp')">WebP</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="spinner" #loadingSpinner id="loadingSpinner"></div>
+      
+      <div class="results" #resultsSection id="resultsSection">
+        <h2>Compression Results</h2>
+        <div class="result-container">
+          <div class="image-preview">
+            <h3>Original Image</h3>
+            <img #originalImage id="originalImage" src="" alt="Original image">
+          </div>
+          <div class="image-preview">
+            <h3>Compressed Image</h3>
+            <img #compressedImage id="compressedImage" src="" alt="Compressed image">
+          </div>
+          <div class="stats">
+            <h3>Compression Statistics</h3>
+            <div class="stat-item">
+              <div class="stat-label">Original Size</div>
+              <div class="stat-value" #originalSize id="originalSize">0 KB</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Compressed Size</div>
+              <div class="stat-value" #compressedSize id="compressedSize">0 KB</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Reduction</div>
+              <div class="stat-value" #reductionPercent id="reductionPercent">0%</div>
+              <div class="progress-bar">
+                <div class="progress" #reductionBar id="reductionBar"></div>
+              </div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Dimensions</div>
+              <div class="stat-value" #dimensions id="dimensions">0 × 0 px</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Format</div>
+              <div class="stat-value" #formatInfo id="formatInfo">Unknown</div>
+            </div>
+            <button class="btn" id="downloadBtn" (click)="downloadCompressedImage()">Download Compressed Image</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar Ad -->
+    <div class="ad-sidebar">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-1895753879578333"
+          data-ad-slot="8659719065"
+          data-ad-format="rectangle"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+  </div>
