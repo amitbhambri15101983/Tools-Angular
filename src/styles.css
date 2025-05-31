@@ -633,3 +633,30 @@ footer {
         font-size: 1.8rem;
     }
 }
+
+.preview-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+  
+  .preview-section th {
+    background-color: #0066cc;
+    color: white;
+    border: 1px solid #0055aa;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .preview-section td {
+    border: 1px solid #4da6ff;
+    padding: 10px;
+  }
+  
+  .preview-section ul {
+    padding-left: 20px;
+  }
+  
+  .preview-section li {
+    margin-bottom: 8px;
+  }

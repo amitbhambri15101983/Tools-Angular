@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 interface Flight {
   airline: string;
@@ -50,9 +51,11 @@ interface AutoTableResult {
 export class FlightItineraryComponent implements OnInit {
   flightForm!: FormGroup;
   showPreview = false;
-  previewContent = '';
-
-  constructor(private fb: FormBuilder) {}
+  previewContent!: SafeHtml;
+  constructor(
+    private fb: FormBuilder,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     const today = new Date().toISOString().split('T')[0];
@@ -217,18 +220,12 @@ export class FlightItineraryComponent implements OnInit {
         <tr>
           <td>${flight.airline || 'Airline'}</td>
           <td>${flight.flightDate ? new Date(flight.flightDate).toLocaleDateString() : 'Date'}</td>
-          <td>
-            ${flight.departureCity || 'City'}
-            <div class="flight-time">${flight.departureHour}:${flight.departureMinute} ${flight.departurePeriod}</div>
-          </td>
-          <td>
-            ${flight.arrivalCity || 'City'}
-            <div class="flight-time">${flight.arrivalHour}:${flight.arrivalMinute} ${flight.arrivalPeriod}</div>
-          </td>
+          <td>${flight.departureCity || 'City'} ${flight.departureHour}:${flight.departureMinute} ${flight.departurePeriod}</td>
+          <td>${flight.arrivalCity || 'City'} ${flight.arrivalHour}:${flight.arrivalMinute} ${flight.arrivalPeriod}</td>
         </tr>
       `;
     });
-
+  
     // Format hotel details
     let hotelRows = '';
     (formValue.hotelDetails || []).forEach((hotel: Hotel) => {
@@ -242,7 +239,7 @@ export class FlightItineraryComponent implements OnInit {
         </tr>
       `;
     });
-
+  
     // Format itinerary
     let dayRows = '';
     (formValue.itineraryDays || []).forEach((day: ItineraryDay) => {
@@ -253,104 +250,110 @@ export class FlightItineraryComponent implements OnInit {
         </tr>
       `;
     });
-
+  
     // Replace agency placeholders
     const introText = formValue.introText?.replace(/\[Travel Agency\]/g, agency) || '';
     const packageExclusions = formValue.packageExclusions?.replace(/\[Travel Agency\]/g, agency) || '';
     const contactInfo = formValue.contactInfo?.replace(/\[Travel Agency\]/g, agency) || '';
-
-    this.previewContent = `
-      <div style="text-align: center; margin-bottom: 30px;">
-        <h2 style="color: #4361ee; margin-bottom: 5px;">${agency}</h2>
-        <p style="font-weight: 500; font-size: 1.1rem;">${formValue.travelerName || 'Traveler'}'s Travel Itinerary</p>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Basic Information</h3>
+  
+    // Updated preview with all sections
+    const htmlContent = `
+      <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #333;">
+        <h1 style="color: #0066cc; text-align: center; font-size: 24px;">Itinerary Preview</h1>
+        
+        <h2 style="color: #0066cc; text-align: center; font-size: 20px; margin-bottom: 5px;">${agency}</h2>
+        <p style="text-align: center;"><strong>Traveler Names:</strong> ${formValue.travelerName || 'Travel Itinerary'}</p>
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Basic Information</h3>
         <p><strong>Date of Travel:</strong> ${formValue.dateOfTravel ? new Date(formValue.dateOfTravel).toLocaleDateString() : 'Date'}</p>
         <p><strong>City of Departure:</strong> ${formValue.departureCity || 'City'}</p>
         <p><strong>Cities Covered:</strong> ${formValue.citiesCovered || 'Cities'}</p>
         <p><strong>Total Package Cost:</strong> ${formValue.totalCost || 'Cost'} INR</p>
-      </div>
-
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px; white-space: pre-line;">
-        ${introText}
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Flight Details</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+        
+        <p>${introText}</p>
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Flight Details</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
           <thead>
-            <tr style="background-color: #e0e7ff; color: #4361ee;">
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Airline</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Date</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Departure From</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Arrival At</th>
+            <tr>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Airline</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Date</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Departure From</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Arrival At</th>
             </tr>
           </thead>
           <tbody>${flightRows}</tbody>
         </table>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Hotel Details</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Hotel Details</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
           <thead>
-            <tr style="background-color: #e0e7ff; color: #4361ee;">
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">City</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Hotel</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Room Category</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">No. of Rooms</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">No. of Nights</th>
+            <tr>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">City</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Hotel</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Room Category</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">No. of Rooms</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">No. of Nights</th>
             </tr>
           </thead>
           <tbody>${hotelRows}</tbody>
         </table>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Package Inclusions</h3>
-        <ul style="margin-left: 20px;">
-          ${(formValue.packageInclusions || '').split('\n').filter((item: string) => item.trim()).map((item: string) => `<li>${item.trim().replace('•', '').trim()}</li>`).join('')}
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Package Inclusions</h3>
+        <ul style="padding-left: 20px;">
+          ${(formValue.packageInclusions || '').split('\n').filter((item: string) => item.trim()).map((item: string) => 
+            `<li style="margin-bottom: 8px;">${item.trim().replace('•', '').trim()}</li>`
+          ).join('')}
         </ul>
         
-        <h4 style="margin-top: 15px;">Meal Plan</h4>
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Meal Plan</h3>
         <p>${formValue.mealPlan || 'Not specified'}</p>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Daily Itinerary</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Daily Itinerary</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
           <thead>
-            <tr style="background-color: #e0e7ff; color: #4361ee;">
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Day</th>
-              <th style="padding: 10px; text-align: left; border: 1px solid #dadce0;">Plan</th>
+            <tr>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Day</th>
+              <th style="background-color: #0066cc; color: white; border: 1px solid #0055aa; padding: 10px; text-align: left;">Plan</th>
             </tr>
           </thead>
           <tbody>${dayRows}</tbody>
         </table>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Package Exclusions</h3>
-        <ul style="margin-left: 20px;">
-          ${packageExclusions.split('\n').filter((item: string) => item.trim()).map((item: string) => `<li>${item.trim().replace('•', '').trim()}</li>`).join('')}
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Package Exclusions</h3>
+        <ul style="padding-left: 20px;">
+          ${packageExclusions.split('\n').filter((item: string) => item.trim()).map((item: string) => 
+            `<li style="margin-bottom: 8px;">${item.trim().replace('•', '').trim()}</li>`
+          ).join('')}
         </ul>
-      </div>
-      
-      <div class="preview-section" style="margin-bottom: 30px; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h3 style="color: #4361ee; border-bottom: 1px solid #dadce0; padding-bottom: 5px; margin-bottom: 15px;">Additional Information</h3>
+        
+        <hr style="border: 1px solid #ddd; margin: 20px 0;">
+        
+        <h3 style="color: #0066cc; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">Additional Information</h3>
         <p><strong>Vehicle:</strong> ${formValue.vehicleInfo || 'Not specified'}</p>
         
-        <h4 style="margin-top: 15px;">Payment Information</h4>
+        <h4 style="font-weight: bold; margin-top: 15px; margin-bottom: 5px;">Payment Information</h4>
         <p>${(formValue.paymentInfo || '').replace(/\n/g, '<br>')}</p>
         
-        <h4 style="margin-top: 15px;">Contact Information</h4>
+        <h4 style="font-weight: bold; margin-top: 15px; margin-bottom: 5px;">Contact Information</h4>
         <p>${contactInfo.replace(/\n/g, '<br>')}</p>
       </div>
-      
-      <p style="text-align: center; margin-top: 30px; font-style: italic;">We wish you a pleasant holiday!</p>
     `;
+
+    // Sanitize and set the HTML content
+    this.previewContent = this.sanitizer.bypassSecurityTrustHtml(htmlContent);
   }
 
   generatePDF(): void {

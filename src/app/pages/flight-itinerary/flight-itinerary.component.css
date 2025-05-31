@@ -254,6 +254,134 @@ textarea.form-control {
     margin-top: 5px;
 }
 
+.preview-content .preview-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    color: #333;
+  }
+  
+  .preview-content h1, 
+  .preview-content h2, 
+  .preview-content h3 {
+    color: #0066cc;
+  }
+  
+  .preview-content h2 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .preview-content hr {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+  }
+  
+  .preview-content .blue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+  
+  .preview-content .blue-table th {
+    background-color: #0066cc;
+    color: white;
+    border: 1px solid #0055aa;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .preview-content .blue-table td {
+    border: 1px solid #4da6ff;
+    padding: 10px;
+  }
+  
+  .preview-content ul {
+    padding-left: 20px;
+  }
+  
+  .preview-content li {
+    margin-bottom: 8px;
+  }
+  
+  .preview-content p {
+    line-height: 1.5;
+  }
+
+  .preview-section .preview-content {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    color: #333;
+  }
+  
+  .preview-section .preview-content h1 {
+    color: #0066cc;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .preview-section .preview-content h2 {
+    color: #0066cc;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .preview-section .preview-content h3 {
+    color: #0066cc;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .preview-section .preview-content hr {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+  }
+  
+  .preview-section .preview-content .blue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+  
+  .preview-section .preview-content .blue-table th {
+    background-color: #0066cc;
+    color: white;
+    border: 1px solid #0055aa;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .preview-section .preview-content .blue-table td {
+    border: 1px solid #4da6ff;
+    padding: 10px;
+  }
+  
+  .preview-section .preview-content ul {
+    padding-left: 20px;
+  }
+  
+  .preview-section .preview-content li {
+    margin-bottom: 8px;
+  }
+  
+  .preview-section .preview-content p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .preview-section .preview-content h4 {
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
 @media (max-width: 768px) {
     .tool-header h1 {
         font-size: 1.8rem;

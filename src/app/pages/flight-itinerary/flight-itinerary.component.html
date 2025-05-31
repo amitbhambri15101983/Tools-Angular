@@ -258,8 +258,7 @@
   
       <!-- Preview Section -->
       <div class="preview-section" id="previewSection" *ngIf="showPreview">
-        <h2>Itinerary Preview</h2>
-        <div class="preview-content" [innerHTML]="previewContent"></div>
+        <div [innerHTML]="previewContent"></div>
         <div class="btn-group" style="justify-content: center; margin-top: 20px;">
           <button type="button" id="closePreviewBtn" class="btn btn-outline" (click)="closePreview()">
             <i class="fas fa-times"></i> Close Preview
