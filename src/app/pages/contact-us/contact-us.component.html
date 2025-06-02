@@ -1,0 +1,90 @@
+<div class="contact-us-container">
+    <div class="header-section">
+      <h1>Contact Us</h1>
+      <p>Have questions, feedback, or need support? We're here to help!</p>
+    </div>
+  
+    <div class="content-wrapper">
+      <div class="contact-info">
+  
+        <div class="info-card">
+          <div class="icon">🕒</div>
+          <div class="info-content">
+            <h3>Response Time</h3>
+            <p>We typically respond within 24-48 hours on business days.</p>
+          </div>
+        </div>
+  
+        <div class="info-card">
+          <div class="icon">💡</div>
+          <div class="info-content">
+            <h3>Feature Requests</h3>
+            <p>Have an idea for a new tool? We'd love to hear it!</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="contact-form-container">
+        <h2>Send Us a Message</h2>
+        <p>Fill out the form below and we'll get back to you as soon as possible</p>
+  
+        <form action="https://formsubmit.co/amit.reply&#64;gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Contact from ToolKitPro">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" [value]="thankYouUrl">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
+          
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="category">Message Category</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Select a category</option>
+              <option value="support">Technical Support</option>
+              <option value="feedback">Feedback</option>
+              <option value="feature">Feature Request</option>
+              <option value="business">Business Inquiry</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+          </div>
+          
+          <div class="privacy-notice">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">I have read and agree to the <a routerLink="/privacy-policy">Privacy Policy</a></label>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>How long does it take to get a response?</h3>
+        <p>We typically respond to all inquiries within 24-48 hours during business days (Monday-Friday).</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you offer technical support for your tools?</h3>
+        <p>Yes, we provide support for all our tools. If you're experiencing issues, please include details about your browser and operating system in your message.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I suggest a new tool?</h3>
+        <p>Absolutely! We're always looking for new tool ideas. Select "Feature Request" as your message category and tell us about your idea.</p>
+      </div>
+    </div>
+  </div>

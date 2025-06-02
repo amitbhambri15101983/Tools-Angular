@@ -6,6 +6,11 @@ import { KidsMathUtilComponent } from './pages/kids-math-util/kids-math-util.com
 import { PdfToWordComponent } from './pages/pdf-to-word/pdf-to-word.component';
 import { PdfToWordAltComponent } from './pages/pdf-to-word-alt/pdf-to-word-alt.component';
 import { FlightItineraryComponent } from './pages/flight-itinerary/flight-itinerary.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { TermsAndConditionComponent } from './pages/terms-and-condition/terms-and-condition.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +20,10 @@ export const routes: Routes = [
   { path: 'pdf-to-word', component: PdfToWordComponent },
   { path: 'pdf-to-word-alt', component: PdfToWordAltComponent },
   { path: 'flight-itinerary', component: FlightItineraryComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'terms-conditions', component: TermsAndConditionComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'thank-you', component: ThankYouComponent },
   { path: '**', redirectTo: '' }
 ];

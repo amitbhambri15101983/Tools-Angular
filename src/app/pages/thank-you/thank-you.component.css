@@ -1,0 +1,142 @@
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }
+  
+  .thank-you-card {
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .icon {
+    font-size: 4rem;
+    color: #27ae60;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+  
+  .thank-you-card h1 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+  }
+  
+  .confirmation {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .next-steps {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .next-steps h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-size: 1.2rem;
+  }
+  
+  .next-steps ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  
+  .next-steps li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .next-steps li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .next-steps a {
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .next-steps a:hover {
+    text-decoration: underline;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .home-btn, .tools-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .home-btn {
+    background: #3498db;
+    color: white;
+  }
+  
+  .tools-btn {
+    background: #ecf0f1;
+    color: #2c3e50;
+  }
+  
+  .home-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .tools-btn:hover {
+    background: #dfe6e9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .thank-you-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .thank-you-card h1 {
+      font-size: 1.8rem;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .home-btn, .tools-btn {
+      width: 100%;
+    }
+  }

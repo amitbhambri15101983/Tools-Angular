@@ -1,0 +1,114 @@
+.about-us-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+  }
+  
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .mission-section {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+  }
+  
+  .mission-section h2 {
+    color: #2980b9;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefits-section {
+    margin-bottom: 3rem;
+  }
+  
+  .benefits-section h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #27ae60;
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .benefit-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+  
+  .cta {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: white;
+    color: #2c3e50;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background: #f1c40f;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .mission-section {
+      padding: 1.5rem;
+    }
+  }
