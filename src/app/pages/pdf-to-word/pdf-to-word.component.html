@@ -1,1 +1,161 @@
-<p>pdf-to-word works!</p>
+<div class="container">
+    <!-- Top Ad Banner -->
+    <div class="ad-banner">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-1895753879578333"
+          data-ad-slot="8659719065"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  
+    <div class="converter-container">
+      <h1>PDF to Word Converter</h1>
+      <p class="subtitle">Convert your PDF documents to editable Word files while preserving formatting</p>
+  
+      <div class="upload-area" #dropArea id="dropArea"
+          (dragover)="highlightDropArea()"
+          (dragenter)="highlightDropArea()"
+          (dragleave)="unhighlightDropArea()"
+          (drop)="handleDrop($event)"
+          (click)="fileInput.click()">
+        <i class="fas fa-file-pdf"></i>
+        <h2>Drag & Drop Your PDF Here</h2>
+        <p>or click to browse files (Max file size: 25MB)</p>
+        <input type="file" #fileInput id="fileInput" accept=".pdf" style="display: none;" (change)="handleFileSelect($event)">
+        <button class="btn" #selectFilesBtn id="selectFilesBtn">Select PDF File</button>
+      </div>
+  
+      <div class="error-message" #errorMessage id="errorMessage"></div>
+  
+      <div class="controls">
+        <div class="control-group">
+          <h3>Conversion Options</h3>
+          <div class="option-group">
+            <label class="option-label">
+              <input type="checkbox" #preserveLayout id="preserveLayout" checked>
+              Preserve original layout
+            </label>
+          </div>
+          <div class="option-group">
+            <label class="option-label">
+              <input type="checkbox" #extractImages id="extractImages" checked>
+              Extract images
+            </label>
+          </div>
+          <div class="option-group">
+            <label class="option-label">
+              <input type="checkbox" #recognizeText id="recognizeText" checked>
+              Recognize text (OCR)
+            </label>
+          </div>
+        </div>
+  
+        <div class="control-group">
+          <h3>Image Optimization</h3>
+          <div class="slider-container">
+            <label for="imageQuality">Image Quality</label>
+            <input type="range" #imageQuality id="imageQuality" class="slider" min="1" max="100" value="80" (input)="updateImageQuality($event)">
+            <div class="slider-value">Quality: <span #imageQualityValue id="imageQualityValue">80</span>%</div>
+          </div>
+          <div class="slider-container">
+            <label for="imageSize">Max Image Width/Height</label>
+            <input type="range" #imageSize id="imageSize" class="slider" min="100" max="2000" step="100" value="1200" (input)="updateImageSize($event)">
+            <div class="slider-value">Size: <span #imageSizeValue id="imageSizeValue">1200</span>px</div>
+          </div>
+        </div>
+      </div>
+  
+      <button class="btn" #convertBtn id="convertBtn" style="width: 100%;" disabled (click)="convertToWord()">
+        <i class="fas fa-file-word"></i> Convert to Word
+      </button>
+  
+      <div class="spinner" #loadingSpinner id="loadingSpinner"></div>
+  
+      <div class="results" #resultsSection id="resultsSection">
+        <div class="result-info">
+          <h3>Conversion Successful!</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">Original File</div>
+              <div class="info-value" #originalFileName id="originalFileName">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">File Size</div>
+              <div class="info-value" #fileSize id="fileSize">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Pages</div>
+              <div class="info-value" #pageCount id="pageCount">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Conversion Time</div>
+              <div class="info-value" #conversionTime id="conversionTime">-</div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="download-btn">
+          <button class="btn" #downloadBtn id="downloadBtn" (click)="downloadWordDoc()">
+            <i class="fas fa-download"></i> Download Word Document
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Sidebar Ad -->
+    <div class="ad-sidebar">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-1895753879578333"
+          data-ad-slot="8659719065"
+          data-ad-format="rectangle"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  
+    <div class="how-to-use">
+      <h2>How to Convert PDF to Word</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Upload your PDF file</h3>
+            <p>Drag and drop your PDF document into the upload area or click to browse your files.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Adjust conversion settings</h3>
+            <p>Choose whether to preserve layout, extract images, and adjust image quality settings.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Convert and download</h3>
+            <p>Click the convert button and download your editable Word document when ready.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bottom Ad Banner -->
+    <div class="ad-banner">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-1895753879578333"
+          data-ad-slot="8659719065"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
