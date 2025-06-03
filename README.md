@@ -75,10 +75,10 @@ npx angular-cli-ghpages --dir=dist/tools-project/browser
 ## Merging the feature branch to main and then deleting this branch
 1. git checkout main -  Switch to main branch
 2. git pull origin main - Pull the latest changes 
-3. git merge <feature branch> - Merge feature branch into main
+3. git merge <featurebranch> - Merge feature branch into main
 4. git push origin main -  Push the updated main branch to remote
-5. git branch -d <feature branch> - Delete the policypages branch locally
-6. git push origin --delete <feature branch> - Delete the policypages branch remotely
+5. git branch -d <featurebranch> - Delete the policypages branch locally
+6. git push origin --delete <featurebranch> - Delete the policypages branch remotely
 
 
 
