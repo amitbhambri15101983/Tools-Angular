@@ -8,5 +8,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isMenuActive = false; // Add this property
 
+  toggleMobileMenu() {
+    this.isMenuActive = !this.isMenuActive;
+  }
+
+  closeMobileMenu() {
+    this.isMenuActive = false;
+  }
 }

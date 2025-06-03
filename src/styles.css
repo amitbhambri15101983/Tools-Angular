@@ -690,3 +690,31 @@ footer {
       grid-template-columns: 1fr;
     }
   }
+
+  /* Add to the existing mobile styles */
+@media (max-width: 768px) {
+    /* ... existing styles ... */
+  
+    /* Ensure mobile menu can be toggled */
+    nav {
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+    
+    /* Add transition for smooth animation */
+    nav {
+      transition: left 0.4s ease;
+    }
+    
+    /* Fix dropdown menu in mobile view */
+    .dropdown-content {
+      position: static;
+      box-shadow: none;
+      display: none !important;
+    }
+    
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: block !important;
+    }
+  }

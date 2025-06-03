@@ -8,9 +8,26 @@
             <h1>Your Ultimate Online Tools Collection</h1>
             <p>Free, fast and easy-to-use tools for all your image, PDF, document and other file conversion needs</p>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for tools...">
-                <button type="submit" id="searchBtn"><i class="fas fa-search"></i> Search</button>
-                <div class="search-results" id="searchResults"></div>
+                <input type="text" 
+                       [(ngModel)]="searchQuery" 
+                       (input)="performSearch()" 
+                       (keydown.enter)="performSearch()"
+                       placeholder="Search for tools...">
+                <button type="button" (click)="performSearch()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <div class="search-results" [class.active]="showSearchResults && searchResults.length > 0">
+                    <a *ngFor="let tool of searchResults" 
+                       class="search-result-item" 
+                       (click)="navigateTo(tool.url)">
+                        <strong [innerHTML]="highlightMatches(tool.name)"></strong>
+                        <div [innerHTML]="highlightMatches(tool.description)"></div>
+                        <small [innerHTML]="highlightMatches(tool.category)"></small>
+                    </a>
+                    <div *ngIf="showSearchResults && searchResults.length === 0" class="no-results">
+                        No tools found matching "{{ searchQuery }}"
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -114,7 +131,7 @@
                     </div>
                     <h3>Image Compressor</h3>
                     <p>Reduce image file size without losing quality</p>
-                    <a href="/img-compress.html?_=1" class="btn btn-outline">Use Tool</a>
+                    <a href="/img-compress" class="btn btn-outline">Use Tool</a>
                 </div>
                 <!-- Placeholder for future tools -->
                 <div class="tool-card">
@@ -151,7 +168,7 @@
                     </div>
                     <h3>PDF to Word</h3>
                     <p>Convert PDF documents to editable Word files</p>
-                    <a href="/pdfToWord1.html?_=1" class="btn btn-outline">Use Tool</a>
+                    <a href="/pdf-to-word" class="btn btn-outline">Use Tool</a>
                 </div>
                 <div class="tool-card">
                     <div class="tool-icon">
@@ -200,11 +217,11 @@
                 </div>
                 <div class="tool-card">
                     <div class="tool-icon">
-                        <i class="fas fa-ruler-combined"></i>
+                        <i class="fas fa-plane"></i>
                     </div>
-                    <h3>Unit Converter</h3>
-                    <p>Convert between different units of measurement</p>
-                    <a href="#" class="btn btn-outline">Coming Soon</a>
+                    <h3>Itinerary Planner</h3>
+                    <p>Plan Your Travel Itenary and download as PDF</p>
+                    <a href="/flight-itinerary" class="btn btn-outline">Use Tool</a>
                 </div>
             </div>
         </div>
@@ -291,207 +308,4 @@
     <!-- Footer -->
 
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.category-card, .tool-card, .feature-card');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.2;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
-                });
-            };
-            
-            // Set initial state
-            const elements = document.querySelectorAll('.category-card, .tool-card, .feature-card');
-            elements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-            
-            // Animate on load and scroll
-            animateOnScroll();
-            window.addEventListener('scroll', animateOnScroll);
-        });
-
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const searchResults = document.getElementById('searchResults');
-
-        // Sample tools data - you can expand this as you add more tools
-        const tools = [
-            {
-                name: "Image Compressor",
-                description: "Reduce image file size without losing quality",
-                category: "Image Tools",
-                url: "/img-compress.html?_=1"
-            },
-            {
-                name: "Image Converter",
-                description: "Convert between JPG, PNG, WEBP and more",
-                category: "Image Tools",
-                url: "#"
-            },
-            {
-                name: "PDF to Word",
-                description: "Convert PDF documents to editable Word files",
-                category: "PDF Tools",
-                url: "/pdfToWord1.html?_=1"
-            },
-            {
-                name: "Bill Splitter",
-                description: "Easily split bills and calculate shares among friends",
-                category: "Utility Tools",
-                url: "/bill-split"
-            },
-            {
-                name: "Kids Math Play",
-                description: "Let the Kids Play and learn Maths Puzzels",
-                category: "Utility Tools",
-                url: "/kidsMathUtil.html?_=1"
-            }
-        ];
-
-        function performSearch(query) {
-            if (!query) {
-                searchResults.innerHTML = '';
-                searchResults.classList.remove('active');
-                return;
-            }
-
-            const results = tools.filter(tool => 
-                tool.name.toLowerCase().includes(query.toLowerCase()) || 
-                tool.description.toLowerCase().includes(query.toLowerCase()) ||
-                tool.category.toLowerCase().includes(query.toLowerCase())
-            );
-
-            displayResults(results, query);
-        }
-
-        function displayResults(results, query) {
-            searchResults.innerHTML = '';
-
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No tools found matching "' + query + '"</div>';
-                searchResults.classList.add('active');
-                return;
-            }
-
-            results.forEach(tool => {
-                const resultItem = document.createElement('a');
-                resultItem.className = 'search-result-item';
-                resultItem.href = `${tool.url}?_=${new Date().getTime()}`; // Cache-busting
-                
-                // Highlight matching text
-                const highlightedName = highlightMatches(tool.name, query);
-                const highlightedDesc = highlightMatches(tool.description, query);
-                const highlightedCategory = highlightMatches(tool.category, query);
-                
-                resultItem.innerHTML = `
-                    <strong>${highlightedName}</strong>
-                    <div>${highlightedDesc}</div>
-                    <small>${highlightedCategory}</small>
-                `;
-                searchResults.appendChild(resultItem);
-            });
-
-            searchResults.classList.add('active');
-        }
-
-        function highlightMatches(text, query) {
-            if (!query) return text;
-            const regex = new RegExp(query, 'gi');
-            return text.replace(regex, match => `<span class="highlight">${match}</span>`);
-        }
-
-        // Event listeners for search
-        searchBtn.addEventListener('click', () => {
-            performSearch(searchInput.value.trim());
-        });
-
-        searchInput.addEventListener('input', () => {
-            performSearch(searchInput.value.trim());
-        });
-
-        searchInput.addEventListener('focus', () => {
-            if (searchInput.value.trim()) {
-                performSearch(searchInput.value.trim());
-            }
-        });
-
-        // Close search results when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target) && !searchBtn.contains(e.target)) {
-                searchResults.classList.remove('active');
-            }
-        });
-
-        // Keyboard navigation for search results
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const firstResult = searchResults.querySelector('.search-result-item');
-                if (firstResult) {
-                    window.location.href = firstResult.href;
-                }
-            }
-        });
-
-        // Cache-busting technique for child pages
-        function navigateTo(url) {
-            // Add timestamp parameter to bypass cache
-            const timestamp = new Date().getTime();
-            const separator = url.includes('?') ? '&' : '?';
-            window.location.href = `${url}${separator}_=${timestamp}`;
-        }
-
-        // Update tool links in the page to include cache-busting
-        document.querySelectorAll('a[href*=".html"]').forEach(link => {
-            const originalHref = link.getAttribute('href');
-            if (!originalHref.includes('?_=')) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    navigateTo(originalHref);
-                });
-            }
-        });
-    </script>
+    

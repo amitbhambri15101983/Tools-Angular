@@ -1,29 +1,27 @@
-
-    <div class="container header-container">
-        <a routerLink="/" class="logo">
-            <div class="logo-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <div class="logo-text">Tool<span>Kit</span>Pro</div>
-          </a>
-        <nav>
-            <ul>
-              <li><a routerLink="/">Home</a></li>
-              <li><a routerLink="/bill-split">Bill Split</a></li>
-              <li><a routerLink="/img-compress">Image Compress</a></li>
-              <li><a routerLink="/kids-math-util">Kids Math</a></li>
-              <li><a routerLink="/pdf-to-word">PDF to Word</a></li>
-              <!-- New Utility dropdown -->
-              <li class="dropdown">
-                <a>Utility <i class="fas fa-caret-down"></i></a>
-                <div class="dropdown-content">
-                  <a routerLink="/flight-itinerary">Flight Itinerary</a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-
+<div class="container header-container">
+  <a routerLink="/" class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-tools"></i>
+      </div>
+      <div class="logo-text">Tool<span>Kit</span>Pro</div>
+    </a>
+  <nav [class.active]="isMenuActive"> <!-- Add binding here -->
+      <ul>
+        <li><a routerLink="/" (click)="closeMobileMenu()">Home</a></li>
+        <li><a routerLink="/bill-split" (click)="closeMobileMenu()">Bill Split</a></li>
+        <li><a routerLink="/img-compress" (click)="closeMobileMenu()">Image Compress</a></li>
+        <li><a routerLink="/kids-math-util" (click)="closeMobileMenu()">Kids Math</a></li>
+        <li><a routerLink="/pdf-to-word" (click)="closeMobileMenu()">PDF to Word</a></li>
+        <!-- New Utility dropdown -->
+        <li class="dropdown">
+          <a>Utility <i class="fas fa-caret-down"></i></a>
+          <div class="dropdown-content">
+            <a routerLink="/flight-itinerary" (click)="closeMobileMenu()">Flight Itinerary</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  <button class="mobile-menu-btn" (click)="toggleMobileMenu()"> <!-- Add click handler -->
+      <i class="fas fa-bars"></i>
+  </button>
+</div>
