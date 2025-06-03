@@ -66,11 +66,11 @@ Project setup on local
 
 ## Deployment to Github pages
 1. Install the Angular CLI GitHub Pages deploy tool
-a. npm install -g angular-cli-ghpages :  Run this command inside project to install Gihup pages deploy tool
+npm install -g angular-cli-ghpages :  Run this command inside project to install Gihup pages deploy tool
 3. Build your Angular app for production
-   a. ng build --configuration production --base-href "/Tools-Angular/" :  Run this command to build with base url Tools-Angular now it will build dist folder and inside that we will have tool-project and inside this browser and server and we need to deploy only browser which we will do next
+ng build --configuration production --base-href "/Tools-Angular/" :  Run this command to build with base url Tools-Angular now it will build dist folder and inside that we will have tool-project and inside this browser and server and we need to deploy only browser which we will do next
 5. Deploy to GitHub Pages
-   a. npx angular-cli-ghpages --dir=dist/tools-project/browser
+npx angular-cli-ghpages --dir=dist/tools-project/browser
 
 ## Merging the feature branch to main and then deleting this branch
 1. git checkout main -  Switch to main branch
