@@ -72,5 +72,13 @@ ng build --configuration production --base-href "/Tools-Angular/" :  Run this co
 3. Deploy to GitHub Pages
 npx angular-cli-ghpages --dir=dist/tools-project/browser
 
+## Merging the feature branch to main and then deleting this branch
+git checkout main -  Switch to main branch
+git pull origin main - Pull the latest changes 
+git merge <feature branch> - Merge feature branch into main
+git push origin main -  Push the updated main branch to remote
+git branch -d <feature branch> - Delete the policypages branch locally
+git push origin --delete <feature branch> - Delete the policypages branch remotely
+
 
   
