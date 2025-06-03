@@ -1,1 +1,59 @@
-<p>kids-math-util works!</p>
+<div class="tool-container">
+    <div class="tool-header">
+        <h1>Kids Math Practice Tool</h1>
+        <p>Practice addition, subtraction, multiplication, and division with customizable difficulty levels. Perfect for kids learning math!</p>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="operation">Math Operation</label>
+            <select id="operation" [(ngModel)]="operation">
+                <option value="add">Addition (+)</option>
+                <option value="subtract">Subtraction (-)</option>
+                <option value="multiply">Multiplication (×)</option>
+                <option value="divide">Division (÷)</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="digits">Number of Digits</label>
+            <select id="digits" [(ngModel)]="digits">
+                <option value="1">1 Digit</option>
+                <option value="2" selected>2 Digits</option>
+                <option value="3">3 Digits</option>
+            </select>
+        </div>
+
+        <button id="generateBtn" class="btn" (click)="generateQuestions()">Generate Questions</button>
+    </div>
+
+    <div class="questions-container" id="questionsContainer">
+        <div *ngIf="questions.length === 0" class="no-questions">
+            <p>Select your preferred math operation and number of digits, then click "Generate Questions" to get started!</p>
+        </div>
+        
+        <div *ngFor="let question of questions; let i = index" 
+             class="question" 
+             [class.correct]="question.isCorrect === true"
+             [class.incorrect]="question.isCorrect === false">
+            <div class="question-text">{{ question.text }} = </div>
+            <input type="number" 
+                   class="question-input" 
+                   [(ngModel)]="question.userAnswer"
+                   (keyup.enter)="checkAnswers()">
+            <div class="feedback-icon">
+                <i *ngIf="question.isCorrect === true" class="fas fa-check" style="color: var(--success);"></i>
+                <i *ngIf="question.isCorrect === false" class="fas fa-times" style="color: var(--danger);"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="results" [class.show]="showResults" id="results">
+        You got {{ correctCount }} out of {{ questions.length }} correct!
+    </div>
+
+    <div class="btn-group">
+        <button id="submitBtn" class="btn" [disabled]="questions.length === 0" (click)="checkAnswers()">Check Answers</button>
+        <button id="newQuestionsBtn" class="btn btn-outline" [disabled]="questions.length === 0" (click)="generateQuestions()">New Questions</button>
+    </div>
+</div>
