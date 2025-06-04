@@ -67,18 +67,22 @@ export class FlightItineraryComponent implements OnInit {
       departureCity: [''],
       citiesCovered: [''],
       totalCost: [''],
+      // KEEP THE PLACEHOLDER IN THE FORM
       introText: [`Dear Mam/Sir,\n\nGreetings from [Travel Agency]!\n\nThank you for giving us the opportunity to plan and arrange your forthcoming holiday. Over the years, we have changed the way people travel.\n\nWith the promise to make your holiday an unforgettable experience, we would like to suggest the below package, based on your preferences. We hope you would enjoy your holiday as much as we enjoyed planning it for you. Feel free to recommend any changes to enhance your travel experience.`],
       packageInclusions: ['• Transfers\n• City tour'],
       mealPlan: ['With Breakfast'],
+      // KEEP THE PLACEHOLDER IN THE FORM
       packageExclusions: [`• Any further increase in the air fare due to an increase in the fuel Price, change in Government regulations, taxes, etc. charged by the airline will be borne by the passengers. [Travel Agency] will not be responsible for the same\n• Any increase in the rate of exchange leading to increase in surface transportation and land arrangements, which may come into effect prior to departure\n• The package does not include any expenses of personal nature, such as laundry, wines, mineral water, food, drinks and other things not mentioned in the itinerary\n• Tour package rates are not applicable during trade fair period or any other events in accommodating cities\n• Standard check-in time is 1400 hrs. And check-out time is 12 noon. Early check-in/late check-out is subject to availability`],
       flightDetails: this.fb.array([this.createFlight()]),
       hotelDetails: this.fb.array([this.createHotel()]),
       itineraryDays: this.fb.array([this.createDay()]),
       vehicleInfo: [''],
       paymentInfo: [`Online Transfer/Cash/Debit or Credit Card/NET Banking\n\nFull payment is required on confirmation of all services and before departure.`],
+      // KEEP THE PLACEHOLDER IN THE FORM
       contactInfo: [`We wish you a pleasant holiday and thank you for contacting [Travel Agency] for your travel needs.\nPlease get in touch with us for any further information. We assure you complete assistance with our best services.\n\nFor Detailed VISA Information: - http://www.makemytrip.com/holidays-international/visa-information.html\nDestination Guide: - http://www.makemytrip.com/travel-guide/`]
     });
 
+   /* 
     const travelAgencyControl = this.flightForm.get('travelAgency');
     const introTextControl = this.flightForm.get('introText');
     const packageExclusionsControl = this.flightForm.get('packageExclusions');
@@ -100,7 +104,7 @@ export class FlightItineraryComponent implements OnInit {
           contactInfoControl.setValue(contactInfo.replace(/\[Travel Agency\]/g, value || 'MakeMyTrip'));
         }
       });
-    }
+    } */
   }
 
   // Flight Methods
@@ -252,6 +256,11 @@ export class FlightItineraryComponent implements OnInit {
     });
   
     // Replace agency placeholders
+    //const introText = formValue.introText?.replace(/\[Travel Agency\]/g, agency) || '';
+    //const packageExclusions = formValue.packageExclusions?.replace(/\[Travel Agency\]/g, agency) || '';
+    //const contactInfo = formValue.contactInfo?.replace(/\[Travel Agency\]/g, agency) || '';
+
+    // REPLACE PLACEHOLDERS ONLY DURING PREVIEW
     const introText = formValue.introText?.replace(/\[Travel Agency\]/g, agency) || '';
     const packageExclusions = formValue.packageExclusions?.replace(/\[Travel Agency\]/g, agency) || '';
     const contactInfo = formValue.contactInfo?.replace(/\[Travel Agency\]/g, agency) || '';
