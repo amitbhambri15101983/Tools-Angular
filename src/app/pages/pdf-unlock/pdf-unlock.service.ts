@@ -27,7 +27,7 @@ export class PdfUnlockService {
             }
             return retryCount + 1;
           }, 0),
-          delayWhen(() => timer(2000)) // wait 2 seconds before each retry
+          delayWhen(() => timer(3000)) // wait 2 seconds before each retry
         )
       ),
       catchError(err => throwError(() => err))
