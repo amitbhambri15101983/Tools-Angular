@@ -52,7 +52,7 @@
         </div>
         
         <!-- Progress Bar -->
-        <div class="progress-container" *ngIf="isProcessing">
+        <div class="progress-container" *ngIf="isProcessing && !unlockResult ">
           <div class="progress-bar" [style.width]="progressValue + '%'"></div>
         </div>
         

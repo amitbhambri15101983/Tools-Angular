@@ -23,6 +23,7 @@ export class PdfUnlockComponent {
   unlockResult: { blobUrl: string, fileName: string } | null = null;
   errorMessage: string | null = null;
   activeFaqIndex: number | null = null;
+  retryAttempt : number | null = null;
 
   constructor(private pdfUnlockService: PdfUnlockService) {}
 
@@ -68,39 +69,47 @@ export class PdfUnlockComponent {
       this.errorMessage = 'Please upload a PDF file';
       return;
     }
-
+  
     this.isProcessing = true;
     this.progressValue = 0;
     this.unlockResult = null;
     this.errorMessage = null;
-
-    // Simulate progress
+    this.retryAttempt = 0; // Track retry attempts
+  
     const progressInterval = setInterval(() => {
-      if (this.progressValue < 95) {
-        this.progressValue += 5;
+      if (this.progressValue < 90) {
+        this.progressValue += 2;
       }
-    }, 200);
-
+    }, 300);
+  
     this.pdfUnlockService.unlockPdf(this.currentFile, this.password).subscribe({
-      next: (blob: Blob | MediaSource) => {
+      next: (blob: Blob) => {
         clearInterval(progressInterval);
         this.progressValue = 100;
-        
+  
         const blobUrl = URL.createObjectURL(blob);
         const fileName = this.currentFile?.name.replace('.pdf', '_unlocked.pdf') || 'unlocked.pdf';
-        
+  
         this.unlockResult = { blobUrl, fileName };
         this.isProcessing = false;
       },
-      error: (err: { error: { message: string; }; status: number; }) => {
+      error: (err) => {
         clearInterval(progressInterval);
         this.isProcessing = false;
-        this.errorMessage = err.error?.message || 
-          (err.status === 401 ? 'Incorrect password' : 'Error unlocking PDF. Please try again.');
+  
+        if (err.status === 0) {
+          this.errorMessage = 'The server may be starting. Please wait a few seconds and try again.';
+        } else if (err.status === 401) {
+          this.errorMessage = 'Incorrect password.';
+        } else {
+          this.errorMessage = 'Error unlocking PDF. Please try again.';
+        }
+  
         console.error('Unlock error:', err);
       }
     });
   }
+  
 
   resetTool(): void {
     this.currentFile = null;
