@@ -265,7 +265,8 @@
   }
 
   .hero p {
-    color: black;
+    color: grey;
+    margin-top: 5px;
   }
 
   .logo-icon {

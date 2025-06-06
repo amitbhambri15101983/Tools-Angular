@@ -12,6 +12,7 @@ import { TermsAndConditionComponent } from './pages/terms-and-condition/terms-an
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { PdfMergerComponent } from './pages/pdf-merge/pdf-merge.component';
+import { PdfUnlockComponent } from './pages/pdf-unlock/pdf-unlock.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,5 +28,6 @@ export const routes: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'thank-you', component: ThankYouComponent },
   { path: 'pdf-merge', component: PdfMergerComponent },
+  { path: 'pdf-unlock', component: PdfUnlockComponent },
   { path: '**', redirectTo: '' }
 ];

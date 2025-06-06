@@ -43,6 +43,12 @@ export class HomeComponent {
       url: "/pdf-merge"
     },
     {
+      name: "PDF Unlock",
+      description: "Unlock PDF file",
+      category: "PDF Tools",
+      url: "/pdf-unlock"
+    },
+    {
       name: "Bill Splitter",
       description: "Easily split bills and calculate shares among friends",
       category: "Utility Tools",

@@ -1,0 +1,192 @@
+<!-- Hero Section -->
+
+  
+  
+  <!-- Tool Container -->
+  <section class="tool-container">
+    <div class="container">
+      <div class="tool-wrapper">
+        <section class="hero">
+            <div class="logo-icon">
+                <i class="fas fa-file-pdf"></i>
+            <h1>PDF Unlocker</h1>
+          </div>
+            <p>Remove password protection and security restrictions from your PDF files instantly</p>
+          
+          </section>
+        
+        <!-- Upload Area -->
+        <div class="upload-area" 
+             (dragover)="preventDefaults($event)" 
+             (dragenter)="preventDefaults($event)" 
+             (dragleave)="preventDefaults($event)" 
+             (drop)="onFileDropped($event)">
+          <div class="upload-icon">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <h3 class="upload-text">Drag & Drop your PDF here</h3>
+          <p>or</p>
+          <div class="browse-btn" (click)="fileInput.click()">Browse Files</div>
+          <input #fileInput type="file" class="file-input" accept=".pdf" (change)="onFileSelected($event)">
+          <div class="file-info">Max file size: 50MB</div>
+          <div class="file-name" *ngIf="fileName">{{ fileName }}</div>
+        </div>
+        
+        <!-- Password Section -->
+        <div class="password-section">
+          <div class="section-title">Enter PDF Password</div>
+          <div class="input-group">
+            <input [type]="passwordVisible ? 'text' : 'password'" 
+                   [(ngModel)]="password" 
+                   placeholder="Enter password for the PDF file">
+            <span class="toggle-password" (click)="togglePasswordVisibility()">
+              <i [class]="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </span>
+          </div>
+          <p class="file-info">Leave blank if there's no password</p>
+        </div>
+        
+        <!-- Error Message -->
+        <div class="status-message error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container" *ngIf="isProcessing">
+          <div class="progress-bar" [style.width]="progressValue + '%'"></div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn" 
+                  [disabled]="!currentFile || isProcessing"
+                  (click)="unlockPdf()">
+            {{ isProcessing ? 'Processing...' : 'Unlock PDF' }}
+          </button>
+          <button class="btn btn-outline" (click)="resetTool()">Reset</button>
+        </div>
+        
+        <!-- Result Section -->
+        <div class="result-section" *ngIf="unlockResult">
+          <div class="result-icon">
+            <i class="fas fa-lock-open"></i>
+          </div>
+          <h3>PDF Successfully Unlocked!</h3>
+          <p>Your PDF is now free from password protection and security restrictions.</p>
+          <a [href]="unlockResult.blobUrl" 
+             [download]="unlockResult.fileName" 
+             class="btn download-btn">
+            <i class="fas fa-download"></i> Download Unlocked PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2>Why Use Our PDF Unlocker?</h2>
+        <p>We provide the best PDF unlocking experience for our users</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Complete Privacy</h3>
+            <p>All processing happens on secure servers - your files are never stored.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Fast Processing</h3>
+            <p>Unlock your PDF files in seconds without any quality loss.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock-open"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Remove Restrictions</h3>
+            <p>Eliminate printing, copying, and editing restrictions from your PDFs.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Secure Uploads</h3>
+            <p>All file transfers are encrypted and automatically deleted after processing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our PDF Unlocker tool</p>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 0">
+        <div class="faq-question" (click)="toggleFaq(0)">
+          <span>Is it legal to remove password protection from PDF files?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>It is legal to unlock PDF files that you own or have permission to modify. However, it is illegal to unlock PDFs that you do not own or have authorization to access. Our tool is intended for legitimate personal and professional use only.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 1">
+        <div class="faq-question" (click)="toggleFaq(1)">
+          <span>What types of security can this tool remove?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Our PDF Unlocker can remove password protection, as well as restrictions on printing, copying text, editing, and document assembly. It works for both user passwords (required to open the file) and owner passwords (restricting permissions).</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 2">
+        <div class="faq-question" (click)="toggleFaq(2)">
+          <span>Will my PDF file quality be affected?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, our unlocking process doesn't alter the content or quality of your PDF file. The resulting unlocked PDF will be identical to the original in terms of content and quality.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 3">
+        <div class="faq-question" (click)="toggleFaq(3)">
+          <span>What is the maximum file size I can unlock?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>You can unlock PDF files up to 50MB in size. For larger files, we recommend using our desktop software version (coming soon).</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 4">
+        <div class="faq-question" (click)="toggleFaq(4)">
+          <span>Is there a limit on how many files I can unlock?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, you can unlock as many files as you need. There are no usage limits on our free tool.</p>
+        </div>
+      </div>
+    </div>
+  </section>
