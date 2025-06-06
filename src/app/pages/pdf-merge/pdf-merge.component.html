@@ -1,0 +1,163 @@
+<div class="app-container">
+<!-- Main Tool Section -->
+
+
+
+<section class="tool-section">
+  <div class="container">
+    
+    <!-- Ad Section -->
+    <div class="container" style="margin: 20px auto; text-align: center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1895753879578333"
+           data-ad-slot="8659719065"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+    
+    
+    <div class="tool-container">
+      <section class="hero">
+        <div class="logo-icon">
+            <i class="fas fa-file-pdf"></i>
+        <h1>PDF Merger</h1>
+      </div>
+        <p>Combine multiple PDF files into one document. Simply upload your PDFs, arrange them in order, and merge.</p>
+      
+      </section>
+      <div class="upload-area" 
+           (click)="fileInput.click()"
+           (dragover)="handleDragOver($event)"
+           (dragleave)="handleDragLeave($event)"
+           (drop)="handleDrop($event)"
+           [class.dragover]="isDragOver">
+        <i class="fas fa-file-pdf upload-icon"></i>
+        <div class="upload-text">Drag & drop your PDF files here or click to browse</div>
+        <button class="upload-btn">Select PDF Files</button>
+        <input #fileInput type="file" class="file-input" accept=".pdf" multiple (change)="handleFileSelect($event)">
+        <div class="file-limit">Max 10 files (Max size 10MB each)</div>
+      </div>
+      
+      <div class="file-list" *ngIf="files.length > 0">
+        <h3 class="file-list-title">Your Files</h3>
+        <div id="fileList">
+          <div class="file-item" *ngFor="let file of files; let i = index">
+            <div class="file-icon">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <div class="file-info">
+              <div class="file-name">{{ file.name }}</div>
+              <div class="file-size">{{ formatFileSize(file.size) }}</div>
+            </div>
+            <div class="file-actions">
+              <button class="file-action-btn move up" title="Move Up" (click)="moveFile(i, 'up')" [disabled]="i === 0">
+                <i class="fas fa-arrow-up"></i>
+              </button>
+              <button class="file-action-btn move down" title="Move Down" (click)="moveFile(i, 'down')" [disabled]="i === files.length - 1">
+                <i class="fas fa-arrow-down"></i>
+              </button>
+              <button class="file-action-btn delete" title="Remove" (click)="removeFile(i)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="merge-controls">
+        <button class="btn" [disabled]="files.length < 2 || isMerging" (click)="mergePdfs()">
+          <span *ngIf="!isMerging">Merge PDF Files</span>
+          <span *ngIf="isMerging"><i class="fas fa-spinner fa-spin"></i> Merging...</span>
+        </button>
+        <button class="btn btn-outline" (click)="resetTool()">Reset</button>
+      </div>
+      
+      <div class="result-section" *ngIf="mergedPdf">
+        <i class="fas fa-check-circle result-icon"></i>
+        <h3 class="result-title">PDF Files Merged Successfully!</h3>
+        <p class="result-info">Your files have been combined into a single PDF document.</p>
+        <button class="download-btn" (click)="downloadMergedPdf()">
+          <i class="fas fa-download"></i> Download Merged PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Use Our PDF Merger?</h2>
+      <p>We provide the best PDF tools experience for our users</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Secure & Private</h3>
+          <p>All processing happens in your browser. Your files never leave your computer.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Fast Processing</h3>
+          <p>Merge PDFs quickly without uploading to any server.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <div class="feature-content">
+          <h3>High Quality</h3>
+          <p>Merged PDFs maintain original quality without compression.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-desktop"></i>
+        </div>
+        <div class="feature-content">
+          <h3>No Installation</h3>
+          <p>Works directly in your browser on any device.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Completely Free</h3>
+          <p>No hidden fees, watermarks, or registration required.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-sort"></i>
+        </div>
+        <div class="feature-content">
+          <h3>Easy Rearrangement</h3>
+          <p>Drag and drop files to set the perfect order.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ad Section -->
+<div class="container" style="margin: 40px auto; text-align: center;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1895753879578333"
+       data-ad-slot="8659719065"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+</div>

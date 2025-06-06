@@ -285,3 +285,33 @@
       font-size: 1.3rem;
     }
   }
+
+  .hero {
+    background: white;
+    padding: 0px;
+  }
+
+  .hero h1 {
+    color: #4361ee;
+  }
+
+  .hero p {
+    color: black;
+  }
+
+  .logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between icon and text */
+  }
+  
+  .logo-icon i {
+    font-size: 2rem;
+    /* color: #e74c3c; */
+  }
+  
+  .logo-icon h1 {
+    margin: 0;
+    font-size: 2rem;
+  }

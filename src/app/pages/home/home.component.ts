@@ -37,6 +37,12 @@ export class HomeComponent {
       url: "/pdf-to-word"
     },
     {
+      name: "PDF Merge",
+      description: "Merge PDF files",
+      category: "PDF Tools",
+      url: "/pdf-merge"
+    },
+    {
       name: "Bill Splitter",
       description: "Easily split bills and calculate shares among friends",
       category: "Utility Tools",
