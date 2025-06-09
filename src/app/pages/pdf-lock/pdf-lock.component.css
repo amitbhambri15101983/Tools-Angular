@@ -1,0 +1,435 @@
+/* Add component-specific styles here */
+/* Most styles are already in the global styles.css */
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  
+  
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+  
+  /* Tool Container */
+  .tool-container {
+    padding: 60px 0;
+  }
+ 
+  /*
+  .tool-wrapper {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+    */
+
+    tool-wrapper,
+    .hero-content {
+      width: 90%;           /* use 90% of viewport width */
+      max-width: 1200px;    /* but never wider than 1200px */
+      margin: 0 auto;       /* center horizontally */
+      padding-left: 20px;   /* some side padding */
+      padding-right: 20px;
+    }
+  
+  .tool-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .tool-header h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--dark);
+  }
+  
+  .tool-header p {
+    color: var(--gray);
+  }
+  
+  /* Upload Area */
+  .upload-area {
+    border: 2px dashed var(--medium-gray);
+    border-radius: var(--border-radius);
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 30px;
+    background-color: var(--primary-light);
+    position: relative;
+  }
+  
+  .upload-area:hover, .upload-area.dragover {
+    border-color: var(--primary);
+    background-color: rgba(224, 231, 255, 0.5);
+  }
+  
+  .upload-icon {
+    font-size: 48px;
+    color: var(--primary);
+    margin-bottom: 15px;
+  }
+  
+  .upload-text {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .browse-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+  }
+  
+  .browse-btn:hover {
+    background-color: var(--secondary);
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .file-info {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+  
+  .file-name {
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 10px;
+    word-break: break-all;
+  }
+  
+  /* Password Section */
+  .password-section {
+    margin-bottom: 30px;
+  }
+  
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark);
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+  
+  .input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--gray);
+  }
+  
+  .toggle-password:hover {
+    color: var(--primary);
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    flex: 1;
+  }
+  
+  .btn:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+  }
+  
+  .btn:disabled {
+    background-color: var(--medium-gray);
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+  }
+  
+  .btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  /* Result Section */
+  .result-section {
+    margin-top: 30px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .result-icon {
+    font-size: 48px;
+    color: var(--success);
+    margin-bottom: 20px;
+  }
+  
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .download-btn i {
+    font-size: 1.2rem;
+  }
+  
+  /* Status Messages */
+  .status-message {
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin: 15px 0;
+    text-align: center;
+  }
+  
+  .status-message.success {
+    background-color: rgba(75, 181, 67, 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+  }
+  
+  .status-message.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+  }
+  
+  /* Progress Bar */
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: var(--medium-gray);
+    border-radius: 4px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--primary);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  
+  /* Features */
+  .features {
+    padding: 60px 0;
+    background-color: #f1f3ff;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .feature-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .feature-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+  
+  .feature-content h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .feature-content p {
+    color: var(--gray);
+    font-size: 0.95rem;
+  }
+  
+  /* FAQ Section */
+  .faq {
+    padding: 60px 0;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    background-color: white;
+  }
+  
+  .faq-question {
+    padding: 20px;
+    background-color: var(--primary-light);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .faq-question i {
+    transition: var(--transition);
+  }
+  
+  .faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .faq-item.active .faq-answer {
+    padding: 20px;
+    max-height: 500px;
+  }
+  
+  .faq-item.active .faq-question i {
+    transform: rotate(180deg);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 60px 0;
+    }
+  
+    .hero h1 {
+      font-size: 2rem;
+    }
+  
+    .tool-wrapper {
+      padding: 30px 20px;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+    }
+  
+    .faq-question {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+  
+    .tool-header h2 {
+      font-size: 1.6rem;
+    }
+  }
+
+  .hero {
+    background: white;
+    padding: 0px;
+  }
+
+  .hero h1 {
+    color: #4361ee;
+  }
+
+  .hero p {
+    color: grey;
+    margin-top: 5px;
+  }
+
+  .logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between icon and text */
+  }
+  
+  .logo-icon i {
+    font-size: 2rem;
+    /* color: #e74c3c; */
+  }
+  
+  .logo-icon h1 {
+    margin: 0;
+    font-size: 2rem;
+  }

@@ -13,6 +13,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { PdfMergerComponent } from './pages/pdf-merge/pdf-merge.component';
 import { PdfUnlockComponent } from './pages/pdf-unlock/pdf-unlock.component';
+import { PdfLockComponent } from './pages/pdf-lock/pdf-lock.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,5 +30,6 @@ export const routes: Routes = [
   { path: 'thank-you', component: ThankYouComponent },
   { path: 'pdf-merge', component: PdfMergerComponent },
   { path: 'pdf-unlock', component: PdfUnlockComponent },
+  { path: 'pdf-lock', component: PdfLockComponent },
   { path: '**', redirectTo: '' }
 ];

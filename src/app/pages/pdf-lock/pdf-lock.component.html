@@ -1,0 +1,195 @@
+<!-- Hero Section -->
+
+  
+  <!-- Tool Container -->
+  <section class="tool-container">
+    <div class="container">
+      <div class="tool-wrapper">
+        <section class="hero">
+            <div class="container hero-content">
+              <h1>PDF Locker Tool</h1>
+              <p>Add password protection and security restrictions to your PDF files</p>
+            </div>
+          </section>
+        <!-- Upload Area -->
+        <div class="upload-area" 
+             (dragover)="preventDefaults($event)" 
+             (dragenter)="preventDefaults($event)" 
+             (dragleave)="preventDefaults($event)" 
+             (drop)="onFileDropped($event)">
+          <div class="upload-icon">
+            <i class="fas fa-file-pdf"></i>
+          </div>
+          <h3 class="upload-text">Drag & Drop your PDF here</h3>
+          <p>or</p>
+          <div class="browse-btn" (click)="fileInput.click()">Browse Files</div>
+          <input #fileInput type="file" class="file-input" accept=".pdf" (change)="onFileSelected($event)">
+          <div class="file-info">Max file size: 50MB</div>
+          <div class="file-name" *ngIf="fileName">{{ fileName }}</div>
+        </div>
+        
+        <!-- Password Section -->
+        <div class="password-section">
+          <div class="section-title">Set PDF Password</div>
+          <div class="input-group">
+            <input [type]="passwordVisible ? 'text' : 'password'" 
+                   [(ngModel)]="password" 
+                   placeholder="Enter password">
+            <span class="toggle-password" (click)="togglePasswordVisibility('password')">
+              <i [class]="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </span>
+          </div>
+          <div class="input-group" style="margin-top: 15px;">
+            <input [type]="confirmPasswordVisible ? 'text' : 'password'" 
+                   [(ngModel)]="confirmPassword" 
+                   placeholder="Confirm password">
+            <span class="toggle-password" (click)="togglePasswordVisibility('confirmPassword')">
+              <i [class]="confirmPasswordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </span>
+          </div>
+        </div>
+        
+        <!-- Error Message -->
+        <div class="status-message error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container" *ngIf="isProcessing">
+          <div class="progress-bar" [style.width]="progressValue + '%'"></div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn" 
+                  [disabled]="!currentFile || isProcessing"
+                  (click)="lockPdf()">
+            {{ isProcessing ? 'Processing...' : 'Lock PDF' }}
+          </button>
+          <button class="btn btn-outline" (click)="resetTool()">Reset</button>
+        </div>
+        
+        <!-- Result Section -->
+        <div class="result-section" *ngIf="lockResult">
+          <div class="result-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>PDF Successfully Locked!</h3>
+          <p>Your PDF is now protected with a password.</p>
+          <a [href]="lockResult.blobUrl" 
+             [download]="lockResult.fileName" 
+             class="btn download-btn">
+            <i class="fas fa-download"></i> Download Locked PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2>Why Use Our PDF Locker?</h2>
+        <p>We provide the best PDF locking experience for our users</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Strong Encryption</h3>
+            <p>Your PDF is encrypted with AES-256, the industry standard for security.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Fast Processing</h3>
+            <p>Lock your PDF files in seconds without any quality loss.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Permission Control</h3>
+            <p>Restrict printing, copying, and editing of your PDF documents.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Secure Uploads</h3>
+            <p>All file transfers are encrypted and automatically deleted after processing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our PDF Locker tool</p>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 0">
+        <div class="faq-question" (click)="toggleFaq(0)">
+          <span>What level of encryption does this tool use?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Our PDF Locker uses AES-256 encryption, which is the industry standard for securing PDF files.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 1">
+        <div class="faq-question" (click)="toggleFaq(1)">
+          <span>Can I set different permissions for the PDF?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can control permissions like printing quality, copying content, and document modification.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 2">
+        <div class="faq-question" (click)="toggleFaq(2)">
+          <span>Will my PDF file quality be affected?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, the locking process doesn't alter the content or quality of your PDF file.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 3">
+        <div class="faq-question" (click)="toggleFaq(3)">
+          <span>What is the maximum file size I can lock?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>You can lock PDF files up to 50MB in size. For larger files, we recommend using our desktop software version.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item" [class.active]="activeFaqIndex === 4">
+        <div class="faq-question" (click)="toggleFaq(4)">
+          <span>Is there a limit on how many files I can lock?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, you can lock as many files as you need. There are no usage limits on our free tool.</p>
+        </div>
+      </div>
+    </div>
+  </section>
