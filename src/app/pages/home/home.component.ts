@@ -49,6 +49,12 @@ export class HomeComponent {
       url: "/pdf-unlock"
     },
     {
+      name: "PDF Lock",
+      description: "Lock PDF file",
+      category: "PDF Tools",
+      url: "/pdf-lock"
+    },
+    {
       name: "Bill Splitter",
       description: "Easily split bills and calculate shares among friends",
       category: "Utility Tools",
