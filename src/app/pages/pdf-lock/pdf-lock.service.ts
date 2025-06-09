@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError, timer } from 'rxjs';
+import { catchError, retryWhen, delayWhen, scan } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,19 @@ export class PdfLockService {
     
     return this.http.post(this.apiUrl, formData, {
       responseType: 'blob'
-    });
+    }).pipe(
+          retryWhen(errors =>
+            errors.pipe(
+              scan((retryCount, error) => {
+                if (retryCount >= 2) {
+                  throw error;
+                }
+                return retryCount + 1;
+              }, 0),
+              delayWhen(() => timer(3000)) // wait 3 seconds before each retry
+            )
+          ),
+          catchError(err => throwError(() => err))
+        );
   }
 }
