@@ -1,0 +1,170 @@
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-content">
+      <h1>Convert Images to Word Documents</h1>
+      <p>Extract text from images and convert to editable Word files in seconds</p>
+    </div>
+  </section>
+  
+  <!-- Ad Section 1 -->
+  <div class="container">
+    <div class="ad-container">
+      <div class="ad-label"></div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1895753879578333"
+           data-ad-slot="8659719065"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+  
+  <!-- Tool Container -->
+  <div class="container">
+    <div class="tool-container">
+      <div class="tool-header">
+        <h2>Image to Word Converter</h2>
+        <p>Upload an image containing text and convert it to an editable Word document</p>
+      </div>
+  
+      <div class="upload-area" id="uploadArea">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Upload an Image</h3>
+        <p>Drag & drop your file here or click to browse</p>
+        <p>Supported formats: JPG, PNG, BMP, GIF</p>
+        <button class="btn btn-outline upload-button" id="uploadButton">
+          <i class="fas fa-folder-open"></i> Choose File
+        </button>
+        <input #fileInput type="file" id="fileInput" class="file-input" accept="image/*">
+      </div>
+  
+      <div class="preview-container" [class.active]="showPreview">
+        <h3 class="preview-title">Image Preview</h3>
+        <img #imagePreview class="image-preview" src="" alt="Preview">
+      </div>
+  
+      <div class="progress-bar" [class.active]="progressValue > 0">
+        <div class="progress" [style.width.%]="progressValue"></div>
+      </div>
+  
+      <div class="status-indicator" [class]="{
+            'status-indicator': true,
+            'error': statusType === 'error',
+            'success': statusType === 'success',
+            'processing': statusType === 'processing'
+          }">
+        <i class="fas" 
+           [class.fa-info-circle]="statusType === 'info'"
+           [class.fa-exclamation-circle]="statusType === 'error'"
+           [class.fa-check-circle]="statusType === 'success'"
+           [class.fa-sync]="statusType === 'processing'"
+           [class.fa-spin]="statusType === 'processing'"></i>
+        <span #statusText>{{ statusMessage }}</span>
+      </div>
+  
+      <div class="btn-group">
+        <button class="btn btn-disabled" id="convertBtn" disabled>
+          <i class="fas fa-sync"></i> Convert to Word
+        </button>
+        <button class="btn btn-outline" id="resetBtn">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+      </div>
+  
+      <div class="preview-container" [style.display]="showTextPreview ? 'block' : 'none'">
+        <h3 class="preview-title">Extracted Text Preview</h3>
+        <div #textPreview class="text-preview"></div>
+      </div>
+  
+      <div class="btn-group" [style.display]="showDownload ? 'flex' : 'none'">
+        <button class="btn" id="downloadBtn">
+          <i class="fas fa-download"></i> Download Word Document
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ad Section 2 -->
+  <div class="container">
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1895753879578333"
+           data-ad-slot="8659719065"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+  
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Use Our Image to Word Converter?</h2>
+        <p>Powerful features to extract text from images with ease</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Secure Processing</h3>
+            <p>Your images are processed locally in your browser. No files are uploaded to any server.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Fast Conversion</h3>
+            <p>Advanced OCR technology extracts text in seconds, even from complex images.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-file-word"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Editable Documents</h3>
+            <p>Download text as fully editable Word documents you can customize and format.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on all devices - smartphones, tablets, and desktops.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Multiple Formats</h3>
+            <p>Supports JPG, PNG, BMP, GIF and other common image formats.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="feature-content">
+            <h3>100% Free</h3>
+            <p>No registration required. Convert unlimited images without any cost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

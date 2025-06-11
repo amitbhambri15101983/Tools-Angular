@@ -14,6 +14,7 @@ import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { PdfMergerComponent } from './pages/pdf-merge/pdf-merge.component';
 import { PdfUnlockComponent } from './pages/pdf-unlock/pdf-unlock.component';
 import { PdfLockComponent } from './pages/pdf-lock/pdf-lock.component';
+import { ImageToWordComponent } from './pages/image-to-word/image-to-word.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,5 +32,6 @@ export const routes: Routes = [
   { path: 'pdf-merge', component: PdfMergerComponent },
   { path: 'pdf-unlock', component: PdfUnlockComponent },
   { path: 'pdf-lock', component: PdfLockComponent },
+  { path: 'image-to-word', component: ImageToWordComponent },
   { path: '**', redirectTo: '' }
 ];
