@@ -4,8 +4,8 @@
     text-align: center;
     margin: 20px 0;
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    border: 1px solid var(--medium-gray);
+    /*box-shadow: var(--box-shadow);
+    border: 1px solid var(--medium-gray);*/
   }
   
   .converter-container {
@@ -205,8 +205,8 @@
     padding: 20px;
     border-radius: var(--border-radius);
     margin-bottom: 30px;
-    box-shadow: var(--box-shadow);
-    border: 1px solid var(--medium-gray);
+     /*box-shadow: var(--box-shadow);
+    border: 1px solid var(--medium-gray);*/
   }
   
   .how-to-use {
