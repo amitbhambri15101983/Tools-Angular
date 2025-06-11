@@ -56,18 +56,16 @@
     background: white;
   }
   
-  .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+  .hero h2 {
+    /*font-size: 2.5rem;
+    margin-bottom: 15px; */
     color: var(--primary);
-    font-weight: 500;
+    /*font-weight: 500; */
   }
   
   .hero p {
-    font-size: 1.1rem;
-    color: var(--dark);
-    max-width: 700px;
-    margin: 0 auto 25px;
+    color: grey;
+    margin-top: 5px;
   }
   
   .compressor-container {
@@ -378,4 +376,51 @@
     .image-preview, .stats {
       min-width: 100%;
     }
+  }
+
+
+  .how-to-use {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--medium-gray);
+  }
+  
+  .how-to-use h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  .steps {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .step {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .step-content h3 {
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+  
+  .step-content p {
+    color: var(--gray);
   }

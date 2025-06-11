@@ -1,5 +1,5 @@
 .about-us-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 2rem auto;
     padding: 0 1.5rem;
     line-height: 1.7;
@@ -16,12 +16,12 @@
   .intro {
     font-size: 1.1rem;
     margin-bottom: 3rem;
-    text-align: center;
+    text-align: left;
   }
   
   .mission-section {
     background-color: #f8f9fa;
-    padding: 2rem;
+    padding: 0;
     border-radius: 10px;
     margin-bottom: 3rem;
   }

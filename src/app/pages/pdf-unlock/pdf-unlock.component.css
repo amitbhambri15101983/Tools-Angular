@@ -408,7 +408,7 @@
     padding: 0px;
   }
 
-  .hero h1 {
+  .hero h2 {
     color: #4361ee;
   }
 
@@ -432,4 +432,14 @@
   .logo-icon h1 {
     margin: 0;
     font-size: 2rem;
+  }
+
+  .ad-banner {
+    background-color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--medium-gray);
   }

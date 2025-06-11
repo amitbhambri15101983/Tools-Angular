@@ -225,3 +225,17 @@
       width: 100%;
     }
   }
+
+  .hero {
+    background: white;
+    padding: 0px;
+  }
+
+  .hero h2 {
+    color: #4361ee;
+  }
+
+  .hero p {
+    color: grey;
+    margin-top: 5px;
+  }

@@ -5,7 +5,7 @@
     box-shadow: var(--box-shadow);
     padding: 30px;
     margin: 40px auto;
-    max-width: 900px;
+    /*max-width: 900px;*/
   }
   
   .tool-header {
@@ -23,6 +23,16 @@
     color: var(--gray);
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  .ad-banner {
+    background-color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    border: 1px solid var(--medium-gray);
   }
   
   .upload-area {
@@ -273,7 +283,7 @@
     padding: 0px;
   }
 
-  .hero h1 {
+  .hero h2 {
     color: #4361ee;
   }
 
@@ -297,4 +307,50 @@
   .logo-icon h1 {
     margin: 0;
     font-size: 2rem;
+  }
+
+  .how-to-use {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--medium-gray);
+  }
+  
+  .how-to-use h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+
+  .steps {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .step {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .step-content h3 {
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+  
+  .step-content p {
+    color: var(--gray);
   }
