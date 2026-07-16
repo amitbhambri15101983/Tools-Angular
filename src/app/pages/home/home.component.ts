@@ -55,6 +55,12 @@ export class HomeComponent {
       url: "/pdf-lock"
     },
     {
+      name: "Image to PDF Conversion",
+      description: "Convers images files to PDF",
+      category: "PDF Tools",
+      url: "/image-to-pdf"
+    },
+    {
       name: "Bill Splitter",
       description: "Easily split bills and calculate shares among friends",
       category: "Utility Tools",
